@@ -88,7 +88,7 @@
 <meta property="og:description" content="Zygote意为受精卵，正如其名，它的功能是孵化Android应用。Android系统所有的应用都是由zygote进程孵化出来。zygote 进程对应的可执行二进制文件为：/syste/bin/apps_process,其源代码路径为：frameworks/base/cmds/app_processzygote进程由init进程解析init.zygote.rc文件启动：12345678910ser">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/e68ccbbdly1fwd9jrhe9gj20pc0o7q5l.jpg">
-<meta property="og:updated_time" content="2018-10-19T01:14:10.983Z">
+<meta property="og:updated_time" content="2018-10-19T01:16:44.736Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="zygote进程启动流程">
 <meta name="twitter:description" content="Zygote意为受精卵，正如其名，它的功能是孵化Android应用。Android系统所有的应用都是由zygote进程孵化出来。zygote 进程对应的可执行二进制文件为：/syste/bin/apps_process,其源代码路径为：frameworks/base/cmds/app_processzygote进程由init进程解析init.zygote.rc文件启动：12345678910ser">
@@ -366,6 +366,7 @@
 
       
         <p>Zygote意为受精卵，正如其名，它的功能是孵化Android应用。Android系统所有的应用都是由zygote进程孵化出来。<br>zygote 进程对应的可执行二进制文件为：/syste/bin/apps_process,其源代码路径为：frameworks/base/cmds/app_process<br>zygote进程由init进程解析init.zygote.rc文件启动：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">service zygote /system/bin/app_process -Xzygote /system/bin --zygote --start-system-server</span><br><span class="line">    class main</span><br><span class="line">    socket zygote stream 660 root system</span><br><span class="line">    onrestart write /sys/android_power/request_state wake</span><br><span class="line">    onrestart write /sys/power/state on</span><br><span class="line">    onrestart restart audioserver</span><br><span class="line">    onrestart restart cameraserver</span><br><span class="line">    onrestart restart media</span><br><span class="line">    onrestart restart netd</span><br><span class="line">    writepid /dev/cpuset/foreground/tasks</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <h2 id="1-作用"><a href="#1-作用" class="headerlink" title="1 作用"></a>1 作用</h2><ul>
 <li>根据属性 persist.sys.dalvik.vm.lib.2 选择Android系统运行的java虚拟机，默认为art虚拟机</li>
 <li>启动java虚拟机，注册jni函数,注册线程创建函数</li>
